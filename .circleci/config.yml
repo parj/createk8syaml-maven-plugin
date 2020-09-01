@@ -177,7 +177,7 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build
+      - build:
           context: "Shared Vars"
       - openjdk-8:
           filters:
