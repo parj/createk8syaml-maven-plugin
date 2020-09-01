@@ -12,6 +12,12 @@
     <description>Maven plugin to generate a minimal Kuberenetes deployment, service and ingress file</description>
     <url>https://github.com/parj/createk8syaml-maven-plugin</url>
 
+    <scm>
+        <url>https://github.com/parj/createk8syaml-maven-plugin</url>
+        <connection>scm:git:git@github.com:parj/createk8syaml-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:parj/createk8syaml-maven-plugin.git</developerConnection>
+    </scm>
+
     <organization>
         <name>Parj</name>
         <url>https://github.com/parj</url>
@@ -27,6 +33,17 @@
     <prerequisites>
         <maven>3.5.0</maven>
     </prerequisites>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
  
     <properties>
         <maven.version>3.6.3</maven.version>
