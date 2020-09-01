@@ -1,0 +1,190 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk
+
+    working_directory: ~/repo-11
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Init submodule
+          command: git submodule update --init --recursive
+
+      - run:
+          name: Add GPG key
+          command: .ci/build.sh --import-key
+
+      - setup_remote_docker:
+          docker_layer_caching: false
+
+      - run:
+          name: Package, run tests, sign, upload snapshot to ossrh and upload dockerimage to Dockerhub
+          command: .ci/build.sh
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+          
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit       
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+  openjdk-8:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    working_directory: ~/repo-8
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a4:05:8e:51:a6:48:d1:65:d4:f4:a1:fd:67:e8:8f:c2"
+
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Init submodule
+          command: git submodule update --init --recursive
+
+      - run:
+          name: Add GPG key
+          command: .ci/build.sh --import-key
+          
+      # run tests!
+      - run: 
+          name: Build Artifact, Release Artifact to Nexus, Build Docker image
+          command: mvn test
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
+  openjdk-15:
+    docker:
+      - image: circleci/openjdk:15-jdk-buster
+
+    working_directory: ~/repo-15
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a4:05:8e:51:a6:48:d1:65:d4:f4:a1:fd:67:e8:8f:c2"
+
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+
+      - run:
+          name: Init submodule
+          command: git submodule update --init --recursive
+
+      - run:
+          name: Add GPG key
+          command: .ci/build.sh --import-key
+          
+      - run: 
+          name: Build Artifact, Release Artifact to Nexus, Build Docker image
+          command: mvn test
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - openjdk-8:
+          filters:
+            branches:
+              ignore:
+                - release
+      - openjdk-15:
+          filters:
+            branches:
+              ignore:
+                - release     
