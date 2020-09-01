@@ -2,7 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.1
+
 jobs:
   build:
     docker:
@@ -174,10 +175,10 @@ jobs:
           path: ~/test-results/junit
 
 workflows:
-  version: 2
   build_and_test:
     jobs:
       - build
+          context: "Shared Vars"
       - openjdk-8:
           filters:
             branches:
