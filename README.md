@@ -8,6 +8,7 @@ When you run the plugin, the files are written out to the `target` folder.
 
 To use this
 
+```xml
     <build>
         <plugins>
         ....
@@ -30,7 +31,7 @@ To use this
                     </execution>
                 </executions>
             </plugin>
-
+```
 
 Parameters
 -----------

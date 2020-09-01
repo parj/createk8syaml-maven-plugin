@@ -11,6 +11,7 @@ Quickstart
 
 To use this
 
+```xml
     <build>
         <plugins>
         ....
@@ -33,6 +34,8 @@ To use this
                     </execution>
                 </executions>
             </plugin>
+
+```
 
 Prerequisites
 -------------

@@ -6,6 +6,7 @@ Usage
 
 Add the plugin to your pom:
 
+```xml
     <build>
         <plugins>
         ....
@@ -28,6 +29,7 @@ Add the plugin to your pom:
                     </execution>
                 </executions>
             </plugin>
+```
 
 And then call the plugin:
 
@@ -52,12 +54,15 @@ If you are using [jib](https://github.com/GoogleContainerTools/jib) or [fabric8]
 
 Within the `properties` section of the pom.xml, define a variable to hold the docker image name
 
+```xml
     <properties>
         <docker.image>docker.io/parjanya/${project.name}:${project.version}</docker.image>
     </properties>
+```
 
 In the plugin, use it as follows
 
+```xml
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
@@ -77,9 +82,11 @@ In the plugin, use it as follows
                     </execution>
                 </executions>
             </plugin>
+```
 
 and if you are using one of the plugins to create the docker image,
 
+```xml
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
@@ -92,7 +99,7 @@ and if you are using one of the plugins to create the docker image,
                         <image>${docker.image}</image>
                     </to>
             .....
-
+```
 
 
 
