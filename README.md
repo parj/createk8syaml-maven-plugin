@@ -1,5 +1,4 @@
-
-[![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/parj/createk8syaml-maven-plugin/badge.svg)](https://snyk.io/test/github/parj/createk8syaml-maven-plugin) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_shield)
+ [![CircleCI](https://circleci.com/gh/parj/createk8syaml-maven-plugin.svg?style=svg)](https://circleci.com/gh/parj/createk8syaml-maven-plugin) [![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/parj/createk8syaml-maven-plugin/badge.svg)](https://snyk.io/test/github/parj/createk8syaml-maven-plugin) [![DepShield Badge](https://depshield.sonatype.org/badges/parj/createk8syaml-maven-plugin/depshield.svg)](https://depshield.github.io) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_shield)
 
 # createk8syaml-maven-plugin
 
@@ -15,7 +14,7 @@ To use this
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>gcr.io/etc</image>
@@ -61,7 +60,7 @@ In the plugin, use it as follows
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>${docker.image}</image>

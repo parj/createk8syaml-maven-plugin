@@ -12,7 +12,7 @@ Add the plugin to your pom:
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>gcr.io/etc</image>
@@ -61,7 +61,7 @@ In the plugin, use it as follows
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>${docker.image}</image>
