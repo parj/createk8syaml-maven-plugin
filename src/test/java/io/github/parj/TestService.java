@@ -21,15 +21,15 @@ public class TestService {
         assertEquals("apiVersion: v1\n" +
                 "kind: Service\n" +
                 "metadata:\n" +
-                "  name: \"foo-service\" # {\"$ref\":\"#/definitions/io.k8s.cli.substitutions.service-name-value\"}\n" +
-                "  namespace: thisisanamespace # {\"$ref\":\"#/definitions/io.k8s.cli.setters.namespace\"}\n" +
+                "  name: \"foo-service\"\n" +
+                "  namespace: thisisanamespace\n" +
                 "spec:\n" +
                 "  selector:\n" +
-                "    app: foo # {\"$ref\":\"#/definitions/io.k8s.cli.setters.name\"}\n" +
+                "    app: foo\n" +
                 "  ports:\n" +
                 "    -\n" +
-                "      port: 5555 # {\"$ref\":\"#/definitions/io.k8s.cli.setters.port\"}\n" +
-                "      targetPort: 5555 # {\"$ref\":\"#/definitions/io.k8s.cli.setters.port\"}\n" +
+                "      port: 5555\n" +
+                "      targetPort: 5555\n" +
                 "      protocol: TCP\n" +
                 "  type: ClusterIP", yaml.toString());
     }

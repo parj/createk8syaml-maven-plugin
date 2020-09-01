@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ name }} # {"$ref":"#/definitions/io.k8s.cli.substitutions.appdeployment-name-value"}
-  namespace: {{ namespace }} # {"$ref":"#/definitions/io.k8s.cli.setters.namespace"}
+  name: {{ name }}
+  namespace: {{ namespace }}
 spec:
   selector:
     matchLabels:
-      app: {{ name }} # {"$ref":"#/definitions/io.k8s.cli.setters.name"}
-  replicas: 2 # {"$ref":"#/definitions/io.k8s.cli.setters.replicas"}
+      app: {{ name }}
+  replicas: 2 
   template:
     metadata:
       labels:
-        app: {{ name }} # {"$ref":"#/definitions/io.k8s.cli.setters.name"}
+        app: {{ name }}
     spec:
       securityContext:
         runAsUser: 1000
         runAsNonRoot: true
       containers:
-      - name: {{ name }}-container # {"$ref":"#/definitions/io.k8s.cli.substitutions.appcontainer-name-value"}
-        image: {{ image }} # {"$ref":"#/definitions/io.k8s.cli.substitutions.image-value"}
+      - name: {{ name }}-container
+        image: {{ image }}
         ports:
-        - containerPort: {{ port }} # {"$ref":"#/definitions/io.k8s.cli.setters.port"}
+        - containerPort: {{ port }}
           name: "container-port"
         {% if readinessProbePath %}
         readinessProbe:
           httpGet:
-            path: {{ readinessProbePath }} # {"$ref":"#/definitions/io.k8s.cli.setters.readinessProbePath"}
+            path: {{ readinessProbePath }}
             port: "container-port"
           initialDelaySeconds: 8
           periodSeconds: 10
@@ -35,7 +35,7 @@ spec:
         {% if livenessProbePath %}
         livenessProbe:
           httpGet:
-            path: {{ livenessProbePath }}" # {"$ref":"#/definitions/io.k8s.cli.setters.livenessProbePath"}
+            path: {{ livenessProbePath }}
             port: "container-port"
           initialDelaySeconds: 8
           periodSeconds: 10

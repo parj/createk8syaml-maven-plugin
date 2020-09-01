@@ -22,19 +22,19 @@ public class TestIngress  {
         assertEquals("apiVersion: networking.k8s.io/v1beta1\n" +
                 "kind: Ingress\n" +
                 "metadata:\n" +
-                "  name: \"foo-ingress\" # {\"$ref\":\"#/definitions/io.k8s.cli.substitutions.ingress-name-value\"}\n" +
-                "  namespace: thisisanamespace # {\"$ref\":\"#/definitions/io.k8s.cli.setters.namespace\"}\n" +
+                "  name: \"foo-ingress\"\n" +
+                "  namespace: thisisanamespace\n" +
                 "spec:\n" +
                 "  rules:\n" +
                 "    -\n" +
-                "      host: localhost # {\"$ref\":\"#/definitions/io.k8s.cli.setters.host\"}\n" +
+                "      host: localhost\n" +
                 "      http:\n" +
                 "        paths:\n" +
                 "          -\n" +
-                "            path: /cowjumpingoverthemoon # {\"$ref\":\"#/definitions/io.k8s.cli.setters.path\"}\n" +
+                "            path: /cowjumpingoverthemoon\n" +
                 "            backend:\n" +
-                "              serviceName: \"foo-service\" # {\"$ref\":\"#/definitions/io.k8s.cli.substitutions.service-name-value\"}\n" +
-                "              servicePort: 5555 # {\"$ref\":\"#/definitions/io.k8s.cli.setters.port\"}", yaml.toString());
+                "              serviceName: \"foo-service\"\n" +
+                "              servicePort: 5555", yaml.toString());
     }
 
     @Test

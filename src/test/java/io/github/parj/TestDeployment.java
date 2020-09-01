@@ -25,28 +25,28 @@ public class TestDeployment {
         assertEquals("apiVersion: apps/v1\n" +
                 "kind: Deployment\n" +
                 "metadata:\n" +
-                "  name: foo # {\"$ref\":\"#/definitions/io.k8s.cli.substitutions.appdeployment-name-value\"}\n" +
-                "  namespace: thisisanamespace # {\"$ref\":\"#/definitions/io.k8s.cli.setters.namespace\"}\n" +
+                "  name: foo\n" +
+                "  namespace: thisisanamespace\n" +
                 "spec:\n" +
                 "  selector:\n" +
                 "    matchLabels:\n" +
-                "      app: foo # {\"$ref\":\"#/definitions/io.k8s.cli.setters.name\"}\n" +
-                "  replicas: 2 # {\"$ref\":\"#/definitions/io.k8s.cli.setters.replicas\"}\n" +
+                "      app: foo\n" +
+                "  replicas: 2\n" +
                 "  template:\n" +
                 "    metadata:\n" +
                 "      labels:\n" +
-                "        app: foo # {\"$ref\":\"#/definitions/io.k8s.cli.setters.name\"}\n" +
+                "        app: foo\n" +
                 "    spec:\n" +
                 "      securityContext:\n" +
                 "        runAsUser: 1000\n" +
                 "        runAsNonRoot: true\n" +
                 "      containers:\n" +
                 "        -\n" +
-                "          name: \"foo-container\" # {\"$ref\":\"#/definitions/io.k8s.cli.substitutions.appcontainer-name-value\"}\n" +
-                "          image: gcr.io/distroless/java # {\"$ref\":\"#/definitions/io.k8s.cli.substitutions.image-value\"}\n" +
+                "          name: \"foo-container\"\n" +
+                "          image: gcr.io/distroless/java\n" +
                 "          ports:\n" +
                 "            -\n" +
-                "              containerPort: 5555 # {\"$ref\":\"#/definitions/io.k8s.cli.setters.port\"}\n" +
+                "              containerPort: 5555\n" +
                 "              name: \"container-port\"\n" +
                 "          resources:\n" +
                 "            limits:\n" +
