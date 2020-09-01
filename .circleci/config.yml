@@ -44,7 +44,7 @@ jobs:
 
       - run:
           name: Package, run tests, sign, upload snapshot to ossrh and upload dockerimage to Dockerhub
-          command: .ci/build.sh
+          command: .ci/build.sh --skip-docker
 
       - run:
           name: Save test results
