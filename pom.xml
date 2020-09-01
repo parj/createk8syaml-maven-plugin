@@ -10,17 +10,17 @@
  
     <name>createk8syaml-maven-plugin</name>
     <description>Maven plugin to generate a minimal Kuberenetes deployment, service and ingress file</description>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/parj/createk8syaml-maven-plugin</url>
 
     <organization>
         <name>Parj</name>
-        <url>https://www.github.com/parj</url>
+        <url>https://github.com/parj</url>
     </organization>
 
     <licenses>
         <license>
-            <name>The Unlicense</name>
-            <url>https://unlicense.org</url>
+            <name>MIT License</name>
+            <url>https://choosealicense.com/licenses/mit/</url>
         </license>
     </licenses>
 
@@ -122,6 +122,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
+                <version>${version.mavenpluginannoations}</version>
                 <reportSets>
                     <reportSet>
                         <reports>

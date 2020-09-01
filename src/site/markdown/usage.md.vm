@@ -1,12 +1,10 @@
+## Velocity treats double hashes as comments, which messes with markdown files. So $H can be used instead.
+#set( $H = '#' )
 
-[![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE)
-# createk8syaml-maven-plugin
+Usage
+-----
 
-This is a simple maven plugin to create a Kuberenetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
-
-When you run the plugin, the files are written out to the `target` folder.
-
-To use this
+Add the plugin to your pom:
 
     <build>
         <plugins>
@@ -25,12 +23,15 @@ To use this
                     <execution>
                       <phase>package</phase>
                       <goals>
-                          <goal>createk8syaml</goal>
+                          <goal>create-k8s-yaml</goal>
                       </goals>
                     </execution>
                 </executions>
             </plugin>
 
+And then call the plugin:
+
+        mvn io.github.parj:createk8syaml-maven-plugin:createk8syaml
 
 Parameters
 -----------
@@ -44,3 +45,13 @@ Parameters
 | `path` |  | The end point of the application to be exposed. Example `/foo/bar` |
 | `host` | `localhost` | The host for the ingress. If not provided `localhost` is provided |
  
+
+
+Kubernetes
+----------
+
+For more details on what is a
+
+* Kubernetes deployment, please see [link](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+* Kubernetes service, please see [link](https://kubernetes.io/docs/concepts/services-networking/service/)
+* Kubernetes ingress, please see [link](https://kubernetes.io/docs/concepts/services-networking/ingress/)

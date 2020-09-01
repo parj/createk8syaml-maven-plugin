@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Creates a minimal Kubernetes deployment, service and ingress yaml file.
  */
-@Mojo(name = "create-k8s-yaml", defaultPhase = LifecyclePhase.PACKAGE)
+@Mojo(name = "createk8syaml", defaultPhase = LifecyclePhase.PACKAGE)
 public class CreateK8SYaml extends AbstractMojo {
 
     @Parameter(defaultValue = "${project}", required = true, readonly = true)
