@@ -1,5 +1,5 @@
-
 [![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_shield)
 # createk8syaml-maven-plugin
 
 This is a simple maven plugin to create a Kuberenetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
@@ -92,3 +92,7 @@ and if you are using one of the plugins to create the docker image,
                     </to>
             .....
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_large)
