@@ -98,10 +98,6 @@ jobs:
       - run:
           name: Init submodule
           command: git submodule update --init --recursive
-
-      - run:
-          name: Add GPG key
-          command: .ci/build.sh --import-key
           
       # run tests!
       - run: 
@@ -153,10 +149,6 @@ jobs:
       - run:
           name: Init submodule
           command: git submodule update --init --recursive
-
-      - run:
-          name: Add GPG key
-          command: .ci/build.sh --import-key
           
       - run: 
           name: Build Artifact, Release Artifact to Nexus, Build Docker image
