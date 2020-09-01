@@ -30,6 +30,17 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>pm</id>
+            <name>Parjanya Mudunuri</name>
+            <email>noneprovided@localhost</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <prerequisites>
         <maven>3.5.0</maven>
     </prerequisites>
