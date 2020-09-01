@@ -1,21 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.parj</groupId>
     <artifactId>createk8syaml-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <version>0.0.3-SNAPSHOT</version>
- 
+
     <name>createk8syaml-maven-plugin</name>
     <description>Maven plugin to generate a minimal Kuberenetes deployment, service and ingress file</description>
-    <url>https://github.com/parj/createk8syaml-maven-plugin</url>
+    <url>https://parj.github.io/createk8syaml-maven-plugin</url>
 
     <scm>
         <url>https://github.com/parj/createk8syaml-maven-plugin</url>
         <connection>scm:git:git@github.com:parj/createk8syaml-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:parj/createk8syaml-maven-plugin.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <organization>
         <name>Parj</name>
@@ -53,8 +53,12 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
+        <site>
+            <id>github-site</id>
+            <url>https://parj.github.io/createk8syaml-maven-plugin</url>
+        </site>
     </distributionManagement>
- 
+
     <properties>
         <maven.version>3.6.3</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,6 +75,7 @@
         <version.junit>5.6.2</version.junit>
         <version.eoyaml>5.1.5</version.eoyaml>
         <version.takari>2.8.0</version.takari>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <dependencies>
@@ -149,7 +154,6 @@
             <version>${maven.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -203,6 +207,27 @@
                             <keyname>${gpg.keyname}</keyname>
                             <passphraseServerId>${gpg.keyname}</passphraseServerId>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>[skip ci] Creating site for ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <server>github</server>
+                    <merge>true</merge>
+                    <path>${site.path}</path>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site</phase>
                     </execution>
                 </executions>
             </plugin>
