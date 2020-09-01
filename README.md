@@ -1,5 +1,6 @@
 
-[![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/parj/createk8syaml-maven-plugin/badge.svg)](https://snyk.io/test/github/parj/createk8syaml-maven-plugin) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_shield)
+
 # createk8syaml-maven-plugin
 
 This is a simple maven plugin to create a Kuberenetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.

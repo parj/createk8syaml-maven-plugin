@@ -39,6 +39,7 @@
         <version.mavensite>3.9.1</version.mavensite>
         <version.maventest>2.1</version.maventest>
         <version.mavensurefire>2.22.2</version.mavensurefire>
+        <version.jackson>2.11.2</version.jackson>
         <version.jinja>2.5.5</version.jinja>
         <version.junit>5.6.2</version.junit>
         <version.eoyaml>5.1.5</version.eoyaml>
@@ -66,6 +67,36 @@
             <groupId>com.hubspot.jinjava</groupId>
             <artifactId>jinjava</artifactId>
             <version>${version.jinja}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Too many vulnerabilities in the version of jackson included in jinjava -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${version.jackson}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${version.jackson}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${version.jackson}</version>
         </dependency>
         <dependency>
             <groupId>com.amihaiemil.web</groupId>
