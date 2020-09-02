@@ -13,7 +13,7 @@ public class TestService {
 
     @Before
     public void setUp() throws IOException {
-        yaml = Setup.readYaml(CreateK8SYaml.SERVICE);
+        yaml = Setup.readYaml(CreateK8SYaml.SERVICE, true);
     }
 
     @Test

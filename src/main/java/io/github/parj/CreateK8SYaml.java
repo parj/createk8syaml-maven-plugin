@@ -65,6 +65,28 @@ public class CreateK8SYaml extends AbstractMojo {
     @Parameter(property = "host", required = true, defaultValue = "localhost")
     String host;
 
+    /**
+     * Path for the readiness probe for Kubernetes. Ex. {@code /hello/actuator/health}.
+     * Readiness is used to check if the deployment pod is ready to receive traffic.
+     * If this is not set, the block of yaml driving readiness will not be included.
+     *
+     * cf - https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+     * https://spring.io/blog/2020/03/25/liveness-and-readiness-probes-with-spring-boot
+     */
+    @Parameter(property = "readinessProbePath")
+    String readinessProbePath;
+
+    /**
+     * Path for the liveness probe for Kubernetes. Ex. {@code /hello/actuator/customHealthCheck}.
+     * Liveness is used to check if the pod is functioning
+     * If this is not set, the block of yaml driving liveness will not be included.
+     *
+     * cf - https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+     * https://spring.io/blog/2020/03/25/liveness-and-readiness-probes-with-spring-boot
+     */
+    @Parameter(property = "livenessProbePath")
+    String livenessProbePath;
+
 
     /**
      * Points to the Kubernetes deployment yaml sitting in the {@code resources folder}. https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
@@ -113,6 +135,8 @@ public class CreateK8SYaml extends AbstractMojo {
         context.put("image", image);
         context.put("path", path);
         context.put("host", host);
+        context.put("readinessProbePath", readinessProbePath);
+        context.put("livenessProbePath", livenessProbePath);
 
         return context;
     }
