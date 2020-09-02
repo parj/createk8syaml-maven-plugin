@@ -10,18 +10,22 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Setup {
-    public static Map<String, Object> createHashMap() {
+    public static Map<String, Object> createHashMap(boolean includeReadinessLiveness) {
         Map<String, Object> context = Maps.newHashMap();
-        context.put("name"      , "foo");
-        context.put("namespace" , "thisisanamespace");
-        context.put("port"      , "5555");
-        context.put("image"     , "gcr.io/distroless/java");
-        context.put("path"      , "/cowjumpingoverthemoon");
-        context.put("host"      , "localhost");
+        context.put("name"              , "foo");
+        context.put("namespace"         , "thisisanamespace");
+        context.put("port"              , "5555");
+        context.put("image"             , "gcr.io/distroless/java");
+        context.put("path"              , "/cowjumpingoverthemoon");
+        context.put("host"              , "localhost");
+        if (includeReadinessLiveness) {
+            context.put("readinessProbePath", "/cowjumpingoverthemoon/actuator/health");
+            context.put("livenessProbePath" , "/cowjumpingoverthemoon/actuator/live");
+        }
         return context;
     }
 
-    public static YamlMapping readYaml(String type) throws IOException {
+    public static YamlMapping readYaml(String type, boolean includeReadinessLiveness) throws IOException {
 
         CreateK8SYaml createK8SYaml = new CreateK8SYaml();
         createK8SYaml.project = new MavenProject();
@@ -32,7 +36,7 @@ public class Setup {
         createK8SYaml.project.setBuild(build);
 
         YamlMapping yaml = Yaml
-                .createYamlInput(createK8SYaml.renderTemplate(type, createHashMap()), Boolean.TRUE)
+                .createYamlInput(createK8SYaml.renderTemplate(type, createHashMap(includeReadinessLiveness)), Boolean.TRUE)
                 .readYamlMapping();
         return yaml;
     }

@@ -13,7 +13,7 @@ public class TestIngress  {
 
     @Before
     public void setUp() throws IOException {
-        yaml = Setup.readYaml(CreateK8SYaml.INGRESS);
+        yaml = Setup.readYaml(CreateK8SYaml.INGRESS, true);
     }
 
     @Test

@@ -40,11 +40,8 @@ jobs:
           name: Add GPG key
           command: .ci/build.sh --import-key
 
-      - setup_remote_docker:
-          docker_layer_caching: false
-
       - run:
-          name: Package, run tests, sign, upload snapshot to ossrh and upload dockerimage to Dockerhub
+          name: Package, run tests, sign, upload snapshot to ossrh
           command: .ci/build.sh --skip-docker
 
       - run:
@@ -171,13 +168,19 @@ workflows:
     jobs:
       - build:
           context: "Shared Vars"
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - openjdk-8:
           filters:
             branches:
               ignore:
                 - release
+                - gh-pages
       - openjdk-15:
           filters:
             branches:
               ignore:
-                - release     
+                - release
+                - gh-pages

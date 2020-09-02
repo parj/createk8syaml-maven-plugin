@@ -1,5 +1,4 @@
-
-[![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/parj/createk8syaml-maven-plugin/badge.svg)](https://snyk.io/test/github/parj/createk8syaml-maven-plugin) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_shield)
+ [![CircleCI](https://circleci.com/gh/parj/createk8syaml-maven-plugin.svg?style=svg)](https://circleci.com/gh/parj/createk8syaml-maven-plugin) [![GitHub license](https://img.shields.io/github/license/parj/createk8syaml-maven-plugin.svg)](https://github.com/parj/createk8syaml-maven-plugin/blob/main/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/parj/createk8syaml-maven-plugin/badge.svg)](https://snyk.io/test/github/parj/createk8syaml-maven-plugin) [![DepShield Badge](https://depshield.sonatype.org/badges/parj/createk8syaml-maven-plugin/depshield.svg)](https://depshield.github.io) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fparj%2Fcreatek8syaml-maven-plugin?ref=badge_shield)
 
 # createk8syaml-maven-plugin
 
@@ -9,18 +8,25 @@ When you run the plugin, the files are written out to the `target` folder.
 
 To use this
 
-    <build>
-        <plugins>
-        ....
+```xml
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.3</version>
                 <configuration>
+                    <!-- Mandatory -->
                     <namespace>thisisaspace</namespace>
                     <image>gcr.io/etc</image>
                     <path>/foo</path>
                     <host>localhost</host>
+
+                    <!-- Optional -->
+                    <host>localhost</host>
+                    <name>arandomname</name>
+                    <port>9999</port>
+                    <readinessProbePath>/foo/actuator/health</readinessProbePath>
+                    <livenessProbePath>/foo/actuator/live</livenessProbePath>
+
                 </configuration>
                 <executions>
                     <execution>
@@ -31,7 +37,7 @@ To use this
                     </execution>
                 </executions>
             </plugin>
-
+```
 
 Parameters
 -----------
@@ -44,6 +50,8 @@ Parameters
 | `image` |  | The docker image registry url to use. Example: `parjanya/samplespringbootapp`|
 | `path` |  | The end point of the application to be exposed. Example `/foo/bar` |
 | `host` | `localhost` | The host for the ingress. If not provided `localhost` is provided |
+| `readinessProbePath` |  | Path for the readiness probe for Kubernetes. Ex. `/hello/actuator/health`.|
+| `livenessProbePath` |  | Path for the liveness probe for Kubernetes. Ex. `/hello/actuator/customHealthCheck`|
  
 Using with Jib/Fabric/Spotify Docker plugin
 -------------------------------------------
@@ -52,21 +60,23 @@ If you are using (jib)[https://github.com/GoogleContainerTools/jib] or (fabric8)
 
 Within the `properties` section of the pom.xml, define a variable to hold the docker image name
 
+```xml
     <properties>
         <docker.image>docker.io/parjanya/${project.name}:${project.version}</docker.image>
     </properties>
+```
 
 In the plugin, use it as follows
 
+```xml
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.3</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>${docker.image}</image>
                     <path>/foo</path>
-                    <host>localhost</host>
                 </configuration>
                 <executions>
                     <execution>
@@ -77,13 +87,14 @@ In the plugin, use it as follows
                     </execution>
                 </executions>
             </plugin>
-
+```
 and if you are using one of the plugins to create the docker image,
 
+```xml
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>2.3.0</version>
+                <version>2.5.2</version>
                 <configuration>
                     <from>
                         <image>gcr.io/distroless/java:11</image>
@@ -91,5 +102,6 @@ and if you are using one of the plugins to create the docker image,
                     <to>
                         <image>${docker.image}</image>
                     </to>
-            .....
-
+                </configuration>
+            </plugin>
+```
