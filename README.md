@@ -12,7 +12,7 @@ To use this
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.3-SNAPSHOT</version>
+                <version>0.0.3</version>
                 <configuration>
                     <!-- Mandatory -->
                     <namespace>thisisaspace</namespace>
@@ -72,7 +72,7 @@ In the plugin, use it as follows
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.3-SNAPSHOT</version>
+                <version>0.0.3</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>${docker.image}</image>
