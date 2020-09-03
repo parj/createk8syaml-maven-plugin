@@ -56,7 +56,7 @@ Parameters
 Using with Jib/Fabric/Spotify Docker plugin
 -------------------------------------------
 
-If you are using (jib)[https://github.com/GoogleContainerTools/jib] or (fabric8)[https://github.com/fabric8io/docker-maven-plugin] or (spotify docker plugin)[https://github.com/spotify/dockerfile-maven], define the docker image name as a variable and then use it both places. 
+If you are using [jib](https://github.com/GoogleContainerTools/jib) or [fabric8](https://github.com/fabric8io/docker-maven-plugin) or [spotify docker plugin](https://github.com/spotify/dockerfile-maven), define the docker image name as a variable and then use it both places. 
 
 Within the `properties` section of the pom.xml, define a variable to hold the docker image name
 
@@ -88,7 +88,7 @@ In the plugin, use it as follows
                 </executions>
             </plugin>
 ```
-and if you are using one of the plugins to create the docker image,
+and if you are using one of the plugins to create the docker image, the below example is for [jib](https://github.com/GoogleContainerTools/jib).
 
 ```xml
             <plugin>
