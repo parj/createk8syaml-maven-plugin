@@ -2,7 +2,7 @@
 
 # createk8syaml-maven-plugin
 
-This is a simple maven plugin to create a Kuberenetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
+This is a simple maven plugin to create a Kubernetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
 
 When you run the plugin, the files are written out to the `target` folder.
 
