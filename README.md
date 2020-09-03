@@ -4,7 +4,7 @@
 
 This is a simple maven plugin to create a Kubernetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
 
-When you run the plugin, the files are written out to the `target` folder.
+When you run the plugin, the files are written out to the `target` folder. Documentation has been published → https://parj.github.io/createk8syaml-maven-plugin/.
 
 To use this
 
