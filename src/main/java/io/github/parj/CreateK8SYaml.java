@@ -119,7 +119,7 @@ public class CreateK8SYaml extends AbstractMojo {
      * Renders the Kubernetes files. The template files are under the {@code resources} folder. There are three files
      * in there - {@code deployment.yaml}, {@code service.yaml}, {@code ingress.yaml}. Jinja templating is used to
      * plug in the values and the files are written to the {@code target} folder
-     * @throws MojoExecutionException
+     * @throws MojoExecutionException If unable to render
      */
     public void execute() throws MojoExecutionException {
         Map<String, Object> context = getMap();
