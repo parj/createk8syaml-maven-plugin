@@ -1,5 +1,6 @@
 createk8syaml-maven-plugin v0.0.6-SNAPSHOT git changelog
 
+2020-09-19 15:57:06 +0100    Updated version number (Parj M)
 2020-09-19 15:43:02 +0100    [skip ci] [maven-release-plugin] prepare for next development iteration (CI Build)
 
 createk8syaml-maven-plugin-0.0.5
