@@ -2,23 +2,24 @@
 
 # createk8syaml-maven-plugin
 
-This is a simple maven plugin to create a Kubernetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
+This is a simple maven plugin to create a Kubernetes deployment, service and ingress yaml file. The files can then be used to deploy the application to kubernetes.
 
-When you run the plugin, the files are written out to the `target` folder. Documentation has been published → https://parj.github.io/createk8syaml-maven-plugin/.
+When you run the plugin, the files are written out to the `target` folder. Documentation has been published to → https://parj.github.io/createk8syaml-maven-plugin/.
 
-To use this
+## Generating the kubernetes file
+
+The plugin can be triggered via `mvn createk8syaml:deploy`
 
 ```xml
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.4</version>
                 <configuration>
                     <!-- Mandatory -->
                     <namespace>thisisaspace</namespace>
                     <image>gcr.io/etc</image>
                     <path>/foo</path>
-                    <host>localhost</host>
 
                     <!-- Optional -->
                     <host>localhost</host>
@@ -26,7 +27,6 @@ To use this
                     <port>9999</port>
                     <readinessProbePath>/foo/actuator/health</readinessProbePath>
                     <livenessProbePath>/foo/actuator/live</livenessProbePath>
-
                 </configuration>
                 <executions>
                     <execution>
@@ -39,8 +39,7 @@ To use this
             </plugin>
 ```
 
-Parameters
------------
+### Parameters
 
 | Parameter Name | Defaults | Description |
 | -------------- | -------- | ----------- |
@@ -53,8 +52,7 @@ Parameters
 | `readinessProbePath` |  | Path for the readiness probe for Kubernetes. Ex. `/hello/actuator/health`.|
 | `livenessProbePath` |  | Path for the liveness probe for Kubernetes. Ex. `/hello/actuator/customHealthCheck`|
  
-Using with Jib/Fabric/Spotify Docker plugin
--------------------------------------------
+### Using with Jib/Fabric/Spotify Docker plugin
 
 If you are using [jib](https://github.com/GoogleContainerTools/jib) or [fabric8](https://github.com/fabric8io/docker-maven-plugin) or [spotify docker plugin](https://github.com/spotify/dockerfile-maven), define the docker image name as a variable and then use it both places. 
 
@@ -72,7 +70,7 @@ In the plugin, use it as follows
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.4</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>${docker.image}</image>
@@ -82,7 +80,7 @@ In the plugin, use it as follows
                     <execution>
                       <phase>package</phase>
                       <goals>
-                          <goal>createk8syaml</goal>
+                          <goal>generate****</goal>
                       </goals>
                     </execution>
                 </executions>
@@ -105,3 +103,46 @@ and if you are using one of the plugins to create the docker image, the below ex
                 </configuration>
             </plugin>
 ```
+
+## Deploying to Kubernetes
+
+The plugin can also be used to deploy to Kubernetes. The application uses the `~/.kube/config` to get the connection details of the cluster
+
+This can be triggered by running `mvn createk8syaml:deploy`
+
+```xml
+    <build>
+        <plugins>
+        ....
+            <plugin>
+                <groupId>io.github.parj</groupId>
+                <artifactId>createk8syaml-maven-plugin</artifactId>
+                <version>0.0.4</version>
+                <!-- Optional -->
+                <configuration>
+                    <kubeconfig>~/randomplace/.config</kubeconfig>
+                    <context>minikube</context>
+                    <deployService>true</deployService>
+                    <deployIngress>true</deployIngress>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+```
+
+### Parameters
+
+| Parameter Name | Defaults | Description |
+| -------------- | -------- | ----------- |
+| `kubeconfig` | `~/.kube/config` | The path to the kuberenetes config file|
+| `context` | Current context within Kubernetes config | The context to use withing the Kubernetes config. Used if you are connecting to a different server that is not the default one |
+| `deployDeployment` | `true` | Indicate whether or not to deploy the Kubernetes deployment object |
+| `deployService` | `false` | Indicate whether or not to deploy the Kubernetes service object |
+| `deployIngress` | `false` | Indicate whether or not to deploy the Kubernetes ingress object |
+| `checkConnection` | `true` | If toggled off, there will no connection check before deployment |
+| `filesLocation` | `${project.build.outputDirectory}` | By default the maven build output directory is picked up |

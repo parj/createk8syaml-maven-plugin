@@ -116,7 +116,7 @@ $esc.h# Deployment of Kubernetes files
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.4-SNAPSHOT</version>
+                <version>0.0.4</version>
                 <executions>
                     <execution>
                       <phase>package</phase>
@@ -141,6 +141,8 @@ And then call the plugin:
 | `deployDeployment` | `true` | Indicate whether or not to deploy the Kubernetes deployment object |
 | `deployService` | `false` | Indicate whether or not to deploy the Kubernetes service object |
 | `deployIngress` | `false` | Indicate whether or not to deploy the Kubernetes ingress object |
+| `checkConnection` | `true` | If toggled off, there will no connection check before deployment |
+| `filesLocation` | `${project.build.outputDirectory}` | By default the maven build output directory is picked up |
 
 Kubernetes
 ----------
