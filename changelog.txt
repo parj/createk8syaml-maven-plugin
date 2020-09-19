@@ -1,0 +1,50 @@
+createk8syaml-maven-plugin v0.0.6-SNAPSHOT git changelog
+
+2020-09-19 15:43:02 +0100    [skip ci] [maven-release-plugin] prepare for next development iteration (CI Build)
+
+createk8syaml-maven-plugin-0.0.5
+2020-09-19 15:42:57 +0100    [skip ci] [maven-release-plugin] prepare release createk8syaml-maven-plugin-0.0.5 (CI Build)
+2020-09-19 15:41:11 +0100    java documentation update (Parj M)
+2020-09-19 15:31:13 +0100    [skip ci] [maven-release-plugin] prepare for next development iteration (CI Build)
+
+createk8syaml-maven-plugin-0.0.4
+2020-09-19 15:31:08 +0100    [skip ci] [maven-release-plugin] prepare release createk8syaml-maven-plugin-0.0.4 (CI Build)
+2020-09-19 15:26:46 +0100    Readme updates (Parj M)
+2020-09-19 14:58:30 +0100    Added support for deploy and rendering templates outside (Parj M)
+2020-09-03 09:31:07 +0100    Added github io link (GitHub)
+2020-09-03 09:28:33 +0100    Corrected spelling (GitHub)
+2020-09-03 09:28:10 +0100    Updated links on readme (GitHub)
+2020-09-02 18:24:27 +0100    [skip ci] [maven-release-plugin] prepare for next development iteration (CI Build)
+
+createk8syaml-maven-plugin-0.0.3
+2020-09-02 18:24:22 +0100    [skip ci] [maven-release-plugin] prepare release createk8syaml-maven-plugin-0.0.3 (CI Build)
+2020-09-02 18:21:24 +0100    Updated usage (Parj M)
+2020-09-02 18:17:28 +0100    Disabled site plugin (Parj M)
+2020-09-02 18:15:16 +0100    Added support for readiness, liveness probe (Parj M)
+2020-09-01 16:49:48 +0100    Added support for github pages (Parj M)
+2020-09-01 15:56:42 +0100    [skip ci] Added syntax highlighting (Parj M)
+2020-09-01 15:50:19 +0100    [skip ci] Updated documentation and added BADGE (Parj M)
+2020-09-01 15:40:10 +0100    [skip ci] Updated circleci to ignore gh-pages branch (Parj M)
+2020-09-01 15:19:36 +0100    [skip ci] [maven-release-plugin] prepare for next development iteration (CI Build)
+
+createk8syaml-maven-plugin-0.0.2
+2020-09-01 15:19:30 +0100    [skip ci] [maven-release-plugin] prepare release createk8syaml-maven-plugin-0.0.2 (CI Build)
+2020-09-01 15:13:48 +0100    Added developer info (Parj M)
+2020-09-01 15:06:02 +0100    [skip ci] [maven-release-plugin] prepare for next development iteration (CI Build)
+
+createk8syaml-maven-plugin-0.0.1
+2020-09-01 15:05:56 +0100    [skip ci] [maven-release-plugin] prepare release createk8syaml-maven-plugin-0.0.1 (CI Build)
+2020-09-01 14:53:32 +0100    Removed uneeded commands (Parj M)
+2020-09-01 14:50:49 +0100    Updated ci (Parj M)
+2020-09-01 13:09:35 +0100    Added a missing colon (Parj M)
+2020-09-01 13:05:17 +0100    Added context (Parj M)
+2020-09-01 12:59:39 +0100    Updated circleci (Parj M)
+2020-09-01 11:12:15 +0100    Added in circleci (Parj M)
+2020-09-01 11:12:06 +0100    Added in ci (Parj M)
+2020-09-01 11:08:19 +0100    Added scm and distribution management (Parj M)
+2020-09-01 11:06:36 +0100    Updated jackson dependencies and added badge (Parj M)
+2020-09-01 10:54:15 +0100    Simplified yamls (Parj M)
+2020-09-01 10:47:51 +0100    Updated usage (Parj M)
+2020-09-01 10:30:50 +0100    Added maven site and licence (Parj M)
+2020-09-01 10:18:32 +0100    Added MIT License (GitHub)
+2020-08-31 21:16:59 +0100    Initial commit (Parj M)
