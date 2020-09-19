@@ -1,15 +1,15 @@
-Create Kuberentes yamls
------------------------
+# Create Kuberentes yamls
 
 This is a simple maven plugin to create a Kuberenetes deployment, service and ingress yaml file. The files can then be used to the application to kubernetes.
 
 When you run the plugin, the files are written out to the `target` folder.
 
 
-Quickstart
-----------
+## Quickstart
 
 To use this
+
+*Generating Kubernetes yamls*
 
 ```xml
     <build>
@@ -18,7 +18,7 @@ To use this
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.4-SNAPSHOT</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>gcr.io/etc</image>
@@ -29,12 +29,32 @@ To use this
                     <execution>
                       <phase>package</phase>
                       <goals>
-                          <goal>createk8syaml</goal>
+                          <goal>generate</goal>
                       </goals>
                     </execution>
                 </executions>
             </plugin>
+```
 
+*Deploying to Kubernetes*
+
+```xml
+    <build>
+        <plugins>
+        ....
+            <plugin>
+                <groupId>io.github.parj</groupId>
+                <artifactId>createk8syaml-maven-plugin</artifactId>
+                <version>0.0.4-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>deploy</goal>
+                      </goals>
+                    </execution>
+                </executions>
+            </plugin>
 ```
 
 Prerequisites

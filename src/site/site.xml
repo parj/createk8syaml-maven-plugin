@@ -1,32 +1,33 @@
 <project name="createk8syaml-maven-plugin">
-    <bannerLeft>
-        <name>createk8syaml-maven-plugin</name>
-    </bannerLeft>
+	<bannerLeft>
+		<name>createk8syaml-maven-plugin</name>
+	</bannerLeft>
 
-    <skin>
-        <groupId>org.apache.maven.skins</groupId>
-        <artifactId>maven-fluido-skin</artifactId>
-        <version>1.9</version>
-    </skin>
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.9</version>
+	</skin>
 
-    <custom>
-        <fluidoSkin>
-            <topBarEnabled>true</topBarEnabled>
-            <sideBarEnabled>true</sideBarEnabled>
-            <gitHub>
-                <projectId>parj/createk8syaml-maven-plugin</projectId>
-                <ribbonOrientation>right</ribbonOrientation>
-                <ribbonColor>gray</ribbonColor>
-            </gitHub>
-        </fluidoSkin>
-    </custom>
+	<custom>
+		<fluidoSkin>
+			<topBarEnabled>true</topBarEnabled>
+			<sideBarEnabled>true</sideBarEnabled>
+			<gitHub>
+				<projectId>parj/createk8syaml-maven-plugin</projectId>
+				<ribbonOrientation>right</ribbonOrientation>
+				<ribbonColor>gray</ribbonColor>
+			</gitHub>
+		</fluidoSkin>
+	</custom>
 
-    <body>
-        <menu name="Overview">
-          <item name="Introduction" href="index.html"/>
-          <item name="Goals" href="plugin-info.html"/>
-          <item name="Usage" href="usage.html"/>
-        </menu>
-        <menu ref="reports" inherit="top"/>
-    </body>
+	<body>
+		<menu name="Overview">
+			<item name="Introduction" href="index.html"/>
+			<item name="Goals" href="plugin-info.html"/>
+			<item name="Usage" href="usage.html"/>
+			<item name="Changelog" href="gitlog.html"/>
+		</menu>
+		<menu ref="reports" inherit="top"/>
+	</body>
 </project>
