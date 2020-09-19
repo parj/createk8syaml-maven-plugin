@@ -14,7 +14,7 @@ The plugin can be triggered via `mvn createk8syaml:deploy`
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.5</version>
                 <configuration>
                     <!-- Mandatory -->
                     <namespace>thisisaspace</namespace>
@@ -70,7 +70,7 @@ In the plugin, use it as follows
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.5</version>
                 <configuration>
                     <namespace>thisisaspace</namespace>
                     <image>${docker.image}</image>
@@ -117,7 +117,7 @@ This can be triggered by running `mvn createk8syaml:deploy`
             <plugin>
                 <groupId>io.github.parj</groupId>
                 <artifactId>createk8syaml-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.5</version>
                 <!-- Optional -->
                 <configuration>
                     <kubeconfig>~/randomplace/.config</kubeconfig>
