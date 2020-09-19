@@ -2,6 +2,7 @@ package io.github.parj;
 
 import com.amihaiemil.eoyaml.YamlMapping;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,8 +12,8 @@ import static org.junit.Assert.assertEquals;
 public class TestIngress  {
     private static YamlMapping yaml;
 
-    @Before
-    public void setUp() throws IOException {
+    @BeforeClass
+    public static void setUp() throws IOException {
         yaml = Setup.readYaml(CreateK8SYaml.INGRESS, true);
     }
 

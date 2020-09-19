@@ -30,10 +30,11 @@ public class Setup {
         CreateK8SYaml createK8SYaml = new CreateK8SYaml();
         createK8SYaml.project = new MavenProject();
         Build build = new Build();
-        build.setDirectory("./target");
+        build.setOutputDirectory("./target");
 
         createK8SYaml.project.setName("moo");
         createK8SYaml.project.setBuild(build);
+        createK8SYaml.outputDirectory = build.getOutputDirectory();
 
         YamlMapping yaml = Yaml
                 .createYamlInput(createK8SYaml.renderTemplate(type, createHashMap(includeReadinessLiveness)), Boolean.TRUE)

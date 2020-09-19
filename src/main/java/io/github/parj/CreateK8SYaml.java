@@ -1,6 +1,7 @@
 package io.github.parj;
 
 import com.google.common.base.Charsets;
+import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
@@ -22,7 +23,7 @@ import java.util.Map;
 /**
  * Creates a minimal Kubernetes deployment, service and ingress yaml file.
  */
-@Mojo(name = "createk8syaml", defaultPhase = LifecyclePhase.PACKAGE)
+@Mojo(name = "generate", defaultPhase = LifecyclePhase.PACKAGE)
 public class CreateK8SYaml extends AbstractMojo {
 
     @Parameter(defaultValue = "${project}", required = true, readonly = true)
@@ -87,6 +88,17 @@ public class CreateK8SYaml extends AbstractMojo {
     @Parameter(property = "livenessProbePath")
     String livenessProbePath;
 
+    /**
+     * The location where the template kubernetes files are sitting. If not provided, will default to the resources folder
+     */
+    @Parameter(property = "inputDirectory")
+    String inputDirectory;
+
+    /**
+     * The location where the kuberentes files should be written to. If not provided, will default to the project build folder
+     */
+    @Parameter(property = "outputDirectory", defaultValue = "${project.build.directory}")
+    String outputDirectory;
 
     /**
      * Points to the Kubernetes deployment yaml sitting in the {@code resources folder}. https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
@@ -116,7 +128,7 @@ public class CreateK8SYaml extends AbstractMojo {
             renderTemplate(SERVICE, context);
             renderTemplate(INGRESS, context);
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            getLog().error(e.getMessage());
             e.printStackTrace();
             throw new MojoExecutionException(e.getMessage());
         }
@@ -150,7 +162,17 @@ public class CreateK8SYaml extends AbstractMojo {
      */
     public String renderTemplate(String nameOfResource, Map<String, Object> context) throws IOException {
         Jinjava jinjava = new Jinjava();
-        String template = Resources.toString(Resources.getResource(nameOfResource), Charsets.UTF_8);
+        String template;
+        if (Strings.isNullOrEmpty(inputDirectory)) {
+            getLog().info("Picking up file " + Resources.getResource(nameOfResource));
+            template = Resources.toString(Resources.getResource(nameOfResource), Charsets.UTF_8);
+        }
+        else {
+            String filePath = inputDirectory + File.separator + nameOfResource;
+            getLog().info("Picking up file " + filePath);
+            template = new String(Files.readAllBytes(Paths.get(inputDirectory + File.separator + nameOfResource)));
+        }
+
         String renderedTemplate = jinjava.render(template, context);
         getLog().info("Creating " + nameOfResource);
 
@@ -161,13 +183,13 @@ public class CreateK8SYaml extends AbstractMojo {
     }
 
     /**
-     * Writes the rendered template to the file to the {@code target folder
+     * Writes the rendered template to the file to the {@code outputDirectory} folder
      * @param file The name of the file to write to - ex. {@code deployment.yaml}, {@code service.yaml}, {@code ingress.yaml}
-     * @param contents
+     * @param contents Contents of the yaml file
      * @throws IOException Throws exception if the file cannot be created/written to.
      */
     private void writeToFile(String file, String contents) throws IOException {
-        String fileName = project.getBuild().getDirectory() + File.separator + file;
+        String fileName = outputDirectory + File.separator + file;
 
         getLog().info("Writing to " + fileName);
         Path path = Paths.get(fileName);

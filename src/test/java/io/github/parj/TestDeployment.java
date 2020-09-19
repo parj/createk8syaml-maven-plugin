@@ -6,6 +6,7 @@ import java.io.IOException;
 import io.takari.maven.testing.TestMavenRuntime;
 import io.takari.maven.testing.TestResources;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -15,8 +16,8 @@ public class TestDeployment {
     private static YamlMapping yaml;
     private static YamlMapping yamlMappingWithoutReadinessLiveness;
 
-    @Before
-    public void setUp() throws IOException {
+    @BeforeClass
+    public static void setUp() throws IOException {
         yaml = Setup.readYaml(CreateK8SYaml.DEPLOYMENT, true);
         yamlMappingWithoutReadinessLiveness = Setup.readYaml(CreateK8SYaml.DEPLOYMENT, false);
     }
