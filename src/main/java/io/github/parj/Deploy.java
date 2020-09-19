@@ -83,9 +83,9 @@ public class Deploy extends AbstractMojo {
 
     /**
      * Connects to a kubernetes cluster using the {@code kubeconfig} config file. By default the file is in the location
-     * {@code ~/.kube/config}. This can be overrident by setting the environment variable {@KUBECONFIG}
-     * @return Connection to cluster
-     * @throws IOException
+     * {@code ~/.kube/config}. This can be overrident by setting the environment variable {@code KUBECONFIG}
+     * @throws IOException If there is an issue
+     * @throws ApiException If there is an issue
      */
     public void connectToCluster() throws IOException, ApiException {
 
@@ -128,7 +128,7 @@ public class Deploy extends AbstractMojo {
     /**
      * Tries to check connection to the cluster by getting the cluster's SSL cert
      * @return Returns true if successful or false
-     * @throws IOException
+     * @throws ApiException  If there is an issue connecting
      */
     public boolean checkConnectionToCluster() throws ApiException {
         int numberOfPods = countSystemPods();
@@ -139,9 +139,9 @@ public class Deploy extends AbstractMojo {
 
     /**
      * Deploys Kubernetes object - {@code Deployment, Service, Ingress}
-     * @param name
-     * @throws IOException
-     * @throws ApiException
+     * @param name Name of the type of deployment
+     * @throws IOException If there is an issue deploying
+     * @throws ApiException If there is an issue deploying
      */
     public void deploy(String name) throws IOException, ApiException {
         File fileToLoad = new File(getFilePath(name));
@@ -164,8 +164,8 @@ public class Deploy extends AbstractMojo {
     /**
      * Deploys a Kuberenetes deployment object. If the deployment object is found, it is updated.
      * @param fileToLoad The file to deploy
-     * @throws IOException
-     * @throws ApiException
+     * @throws IOException If there is an issue deploying
+     * @throws ApiException If there is an issue deploying
      */
     public void deployDeployment(File fileToLoad) throws IOException, ApiException {
         String namespace = getNamespace(fileToLoad);
@@ -183,8 +183,8 @@ public class Deploy extends AbstractMojo {
     /**
      * Deploys a Kubernetes service object. If the service object is found, it is then deleted and then deployed
      * @param fileToLoad The file to deploy
-     * @throws IOException
-     * @throws ApiException
+     * @throws IOException If there is an issue deploying
+     * @throws ApiException If there is an issue deploying
      */
     public void deployService(File fileToLoad) throws IOException, ApiException {
         String namespace = getNamespace(fileToLoad);
@@ -203,9 +203,9 @@ public class Deploy extends AbstractMojo {
 
     /**
      * Deploys a Kuberenetes Ingress object. If the Ingress object is found, it is updated.
-     * @param fileToLoad
-     * @throws IOException
-     * @throws ApiException
+     * @param fileToLoad File to load
+     * @throws IOException If there is an issue deploying
+     * @throws ApiException If there is an issue deploying
      */
     public void deployIngress(File fileToLoad) throws IOException, ApiException {
         String namespace = getNamespace(fileToLoad);
@@ -219,6 +219,11 @@ public class Deploy extends AbstractMojo {
         getLog().info(String.join(" ", "Ingress", nameOfApp, "@ namespace", namespace) );
     }
 
+    /**
+     * Counts the number of pods in the {@code kube-system} namespace
+     * @return Number of pods
+     * @throws ApiException If there is an issue counting the pods
+     */
     public int countSystemPods() throws ApiException {
         CoreV1Api coreV1Api = new CoreV1Api();
         V1PodList v1PodList = coreV1Api.listNamespacedPod("kube-system", null, null, null, null, null, null, null, 90, null);
@@ -231,8 +236,7 @@ public class Deploy extends AbstractMojo {
      * @param nameOfApp The name of the object
      * @param namespace The namespace of the object
      * @return The count in the cluster
-     * @throws ApiException
-     * @throws IOException
+     * @throws ApiException If there is an issue deploying
      */
     public int countOfKubernetesObject(String type, String nameOfApp, String namespace) throws ApiException {
         int size = 0;
@@ -266,7 +270,7 @@ public class Deploy extends AbstractMojo {
      * Returns name of object in the Kubernetes yaml file
      * @param file The Kubernetes file object
      * @return The name of the object
-     * @throws IOException
+     * @throws IOException If there is an issue reading the yaml
      */
     public String getName(File file) throws IOException {
         YamlMapping yaml = com.amihaiemil.eoyaml.Yaml.createYamlInput(file, Boolean.TRUE).readYamlMapping();
@@ -279,7 +283,7 @@ public class Deploy extends AbstractMojo {
      * Finds the file and then returns name of object in the Kubernetes yaml file
      * @param name The name of the file
      * @return The name of the object
-     * @throws IOException
+     * @throws IOException If there is an issue reading the yaml
      */
     public String getName(String name) throws IOException {
         return getFilePath(name);
@@ -289,7 +293,7 @@ public class Deploy extends AbstractMojo {
      * Returns namespace of object in the Kubernetes yaml file
      * @param file The Kubernetes file object
      * @return The name of the object
-     * @throws IOException
+     * @throws IOException If there is an issue reading the yaml
      */
     public String getNamespace(File file) throws IOException {
         YamlMapping yaml = com.amihaiemil.eoyaml.Yaml.createYamlInput(file, Boolean.TRUE).readYamlMapping();
@@ -302,7 +306,7 @@ public class Deploy extends AbstractMojo {
      * Finds the file and then returns namespace of object in the Kubernetes yaml file
      * @param name The name of the file
      * @return The name of the object
-     * @throws IOException
+     * @throws IOException If there is an issue reading the yaml
      */
     public String getNamespace(String name) throws IOException {
         return getFilePath(name);
@@ -311,15 +315,15 @@ public class Deploy extends AbstractMojo {
     /**
      * Returns path of the object
      * @param name Name of file
-     * @return
+     * @return Path of the file
      */
     public String getFilePath(String name) {
         return filesLocation + File.separator + name;
     }
 
     /**
-     * connects to cluster
-     * @throws MojoExecutionException
+     * Executes deployment
+     * @throws MojoExecutionException If there is an issue executing
      */
     public void execute() throws MojoExecutionException {
         try {
