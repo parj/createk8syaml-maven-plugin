@@ -4,7 +4,7 @@
     <groupId>io.github.parj</groupId>
     <artifactId>createk8syaml-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.4</version>
 
     <name>createk8syaml-maven-plugin</name>
     <description>Maven plugin to generate a minimal Kuberenetes deployment, service and ingress file</description>
@@ -14,7 +14,7 @@
         <url>https://github.com/parj/createk8syaml-maven-plugin</url>
         <connection>scm:git:git@github.com:parj/createk8syaml-maven-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:parj/createk8syaml-maven-plugin.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>createk8syaml-maven-plugin-0.0.4</tag>
     </scm>
 
     <organization>
