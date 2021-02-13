@@ -77,7 +77,7 @@
         <version.maventest>2.1</version.maventest>
         <version.mavensurefire>2.22.2</version.mavensurefire>
         <version.takari>2.8.0</version.takari>
-        <version.mock-server>4.11.1</version.mock-server>
+        <version.mock-server>4.11.2</version.mock-server>
         <github.global.server>github</github.global.server>
     </properties>
 
