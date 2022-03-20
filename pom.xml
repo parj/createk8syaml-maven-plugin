@@ -67,7 +67,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <version.eoyaml>5.1.5</version.eoyaml>
         <version.gitlog>1.13.17</version.gitlog>
-        <version.jackson>2.11.2</version.jackson>
+        <version.jackson>2.13.2</version.jackson>
         <version.jinja>2.5.5</version.jinja>
         <version.junit>5.6.2</version.junit>
         <version.kubernetesclient>9.0.0</version.kubernetesclient>
